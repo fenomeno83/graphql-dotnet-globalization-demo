@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Api", "GraphQL.Globalization.Api\GraphQL.Globalization.Api.csproj", "{6224C484-3E23-4F06-A749-195C1E478111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Common", "GraphQL.Globalization.Common\GraphQL.Globalization.Common.csproj", "{6224C484-3E23-4F06-A749-195C1E478112}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Data", "GraphQL.Globalization.Data\GraphQL.Globalization.Data.csproj", "{6224C484-3E23-4F06-A749-195C1E478113}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Entities", "GraphQL.Globalization.Entities\GraphQL.Globalization.Entities.csproj", "{6224C484-3E23-4F06-A749-195C1E478114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Interfaces", "GraphQL.Globalization.Interfaces\GraphQL.Globalization.Interfaces.csproj", "{6224C484-3E23-4F06-A749-195C1E478115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Services", "GraphQL.Globalization.Services\GraphQL.Globalization.Services.csproj", "{6224C484-3E23-4F06-A749-195C1E478116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQL.Globalization.Tests", "GraphQL.Globalization.Tests\GraphQL.Globalization.Tests.csproj", "{6224C484-3E23-4F06-A749-195C1E478117}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6224C484-3E23-4F06-A749-195C1E478111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478111}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478111}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478112}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6224C484-3E23-4F06-A749-195C1E478117}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E7C8844-15D4-461F-8085-48D8B0E66F8E}
+	EndGlobalSection
+EndGlobal

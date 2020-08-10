@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>{6224c484-3e23-4f06-a749-195c1e478116}</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphQL.Globalization.Common\GraphQL.Globalization.Common.csproj" />
+    <ProjectReference Include="..\GraphQL.Globalization.Data\GraphQL.Globalization.Data.csproj" />
+    <ProjectReference Include="..\GraphQL.Globalization.Entities\GraphQL.Globalization.Entities.csproj" />
+    <ProjectReference Include="..\GraphQL.Globalization.Interfaces\GraphQL.Globalization.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
