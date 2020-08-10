@@ -4,7 +4,6 @@ using GraphiQl;
 using GraphQL.Http;
 using GraphQL.Types;
 using GraphQL.Globalization.Api.GraphQLSchema;
-using GraphQL.Globalization.Api.GraphQLSchema.Extensions;
 using GraphQL.Globalization.Api.Infrastructure.Middlewares;
 using GraphQL.Globalization.Entities;
 using GraphQL.Globalization.Interfaces;
@@ -17,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using GraphQL;
+using GraphQL.AutoTypes;
 
 namespace GraphQL.Globalization.Api
 {

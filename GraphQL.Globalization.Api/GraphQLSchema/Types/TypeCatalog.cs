@@ -1,7 +1,7 @@
 ﻿using GraphQL.Types;
-using GraphQL.Globalization.Api.GraphQLSchema.Extensions;
 using GraphQL.Globalization.Entities.Models.Generic;
 using GraphQL.Globalization.Entities.Models.Test;
+using GraphQL.AutoTypes;
 
 namespace GraphQL.Globalization.Api.GraphQLSchema.Types
 {
