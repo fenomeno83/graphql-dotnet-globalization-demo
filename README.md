@@ -3,7 +3,7 @@ An example of implementation of graphql in .net core 3.1, with globalization inc
 
 Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), this solution implements some important features:
 
-1-Auto types starting from dto classes. See original libray https://github.com/fenomeno83/graphql-dotnet-auto-types
+1-Auto types starting from dto classes. See original library https://github.com/fenomeno83/graphql-dotnet-auto-types
 
 2-Validation management, with some additional custom validation
 
