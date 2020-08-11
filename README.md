@@ -24,7 +24,7 @@ This prevent, for example, that dbcontext connection are open only once at start
 
 10-GraphiQL GUI. See readme.txt in case you use auth
 
-11-Several common extensions methods
+11-Several common extension methods
 
 12-Test project
 
