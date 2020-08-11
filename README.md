@@ -20,7 +20,6 @@ Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), thi
 8-Example of custom auth management. Project is not configured with auth, but you can use extension methods inside queries and mutations (see commented examples) if you configure auth in startup.cs (see .net core 3.1 guides to do this)
 
 9-Scoped lifetime for services called inside queries and mutations, that have singleton lifetime (by default you can't have scoped lifetime inside a component with singleton lifetime). 
-
 This prevent, for example, that dbcontext connection are open only once at starting server. Instead it is open at each request, because of scoped lifetime.
 
 10-GraphiQL GUI. See readme.txt in case you use auth
