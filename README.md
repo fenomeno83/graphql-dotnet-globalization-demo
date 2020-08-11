@@ -3,7 +3,7 @@ An example of implementation of graphql in .net core 3.1, with globalization inc
 
 Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), this solution implements some important features:
 
-1-Auto types starting from dto classes. See original library https://github.com/fenomeno83/graphql-dotnet-auto-types
+1-Auto types starting from dto classes included. See original library https://github.com/fenomeno83/graphql-dotnet-auto-types
 
 2-Validation management, with some additional custom validation
 
@@ -20,7 +20,7 @@ Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), thi
 8-Example of custom auth management. Project is not configured with auth, but you can use extension methods inside queries and mutations (see commented examples) if you configure auth in startup.cs (see .net core 3.1 guides to do this)
 
 9-Scoped lifetime for services called inside queries and mutations, that have singleton lifetime (by default you can't have scoped lifetime inside a component with singleton lifetime). 
-This prevent, for example, that dbcontext connection are open only once at starting server. Instead it is open at each request, because of scoped lifetime.
+This prevent, for example, that dbcontext connection is open only once at starting server. Instead it is open at each request, because of scoped lifetime.
 
 10-GraphiQL GUI. See readme.txt in case you use auth
 
