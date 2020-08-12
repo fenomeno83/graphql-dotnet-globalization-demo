@@ -11,7 +11,6 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Queries
         {
             //add all group queries here
             FieldAsync<TestGroupQueries>("testQueries", resolve: async context => await Task.FromResult(new { }));
-            FieldAsync<TestGroupParallelQueries>("testParallelQueries", resolve: async context => await Task.FromResult(new { }));
 
         }
     }

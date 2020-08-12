@@ -7,13 +7,15 @@ using GraphQL.Globalization.Common.Extensions;
 using GraphQL.Globalization.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System;
+using GraphQL.Globalization.Api.GraphQLSchema.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GraphQL.Globalization.Api.GraphQLSchema.Queries.Groups
 {
 
-    public class TestGroupQueries : ScopedObjectGraphType
+    public class TestGroupQueries : ObjectGraphType
     {
-        public TestGroupQueries(IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public TestGroupQueries(IHttpContextAccessor _httpContextAccessor)
         {
             Name = "testQueries";
 
@@ -41,13 +43,16 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Queries.Groups
                     arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "input" }),
                     resolve: async context =>
                     {
-                        //example of scopes authorization, if it is configured from startup.cs
-                        //_httpContextAccessor.HttpContext.ValidateScopes("read");
+                        using (var scope = _httpContextAccessor.CreateScope())
+                        {
+                            //example of scopes authorization, if it is configured from startup.cs
+                            //_httpContextAccessor.HttpContext.ValidateScopes("read");
 
-                        return await GetService<ITestService>().DemoQuery(context.GetArgument<int>("input"));
+                            return await scope.GetService<ITestService>().DemoQuery(context.GetArgument<int>("input"));
+                        }
                     });
 
-
+           
         }
     }
 }

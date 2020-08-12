@@ -9,12 +9,15 @@ using GraphQL.Globalization.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using GraphQL.Globalization.Services.Infrastructure.Managers;
+using GraphQL.Globalization.Api.GraphQLSchema.Extensions;
 
 namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations.Groups
 {
-    public class TestGroupMutations : ScopedObjectGraphType
+    public class TestGroupMutations : ObjectGraphType
     {
-        public TestGroupMutations(IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public TestGroupMutations(IHttpContextAccessor _httpContextAccessor)
         {
 
             Name = "testMutations";
@@ -48,18 +51,26 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations.Groups
                     arguments: new QueryArguments(new QueryArgument<NonNullGraphType<TestRequestInputType>> { Name = "input" }),
                     resolve: async context =>
                     {
-                        //example of scopes authorization, if it is configured from startup.cs
-                        //_httpContextAccessor.HttpContext.ValidateScopes("create");
+                        using (var scope = _httpContextAccessor.CreateScope())
+                        {
 
-                        //get dto; use GetArgumentExtension instead of native GetArgument, because solve some deserialization problems
-                        TestRequest request = context.GetArgumentExtension<TestRequest>("input");
+                            //example of scopes authorization, if it is configured from startup.cs
+                            //_httpContextAccessor.HttpContext.ValidateScopes("create");
 
-                        //validate model
-                        Infrastructure.Extensions.Validation.Validate(request, _httpContextAccessor.HttpContext);
+                            //get dto; use GetArgumentExtension instead of native GetArgument, because solve some deserialization problems
+                            TestRequest request = context.GetArgumentExtension<TestRequest>("input");
 
-                        return await GetService<ITestService>().DemoMutation(request);
+                            //validate model
+                            Infrastructure.Extensions.Validation.Validate(request, _httpContextAccessor.HttpContext);
+
+                            return await scope.GetService<ITestService>().DemoMutation(request);
+
+                            //return await GetService<ITestService>().DemoMutation(request);
+                        }
+
                     });
 
+            
         }
     }
 }

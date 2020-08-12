@@ -88,11 +88,7 @@ namespace GraphQL.Globalization.Api
 
             services.AddBusinessServices();
 
-
-            //we use two different approach to manage scoped entity framework operations
-            services.AddDbContext(Configuration); //use this if we don't have parallel execution
-            services.AddFactoryDbContext(Configuration); //use this if we have parallel execution
-
+            services.AddDbContext(Configuration); 
 
 
         }

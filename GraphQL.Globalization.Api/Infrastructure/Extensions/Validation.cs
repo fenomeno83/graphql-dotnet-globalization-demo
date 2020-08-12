@@ -18,7 +18,7 @@ namespace GraphQL.Globalization.Api.Infrastructure.Extensions
         public static void Validate<T>(T model, HttpContext context)
         {
 
-            var validationContextService = context.RequestServices.GetRequiredService<IValidationContextService>();
+            var validationContextService = context.RequestServices.GetRequiredService<IContextService>();
             var validationContext = validationContextService.GetValidationContext(model);
 
             IStringLocalizer<Resources> localizer = context.RequestServices.GetRequiredService<IStringLocalizer<Resources>>();

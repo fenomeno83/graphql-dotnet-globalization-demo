@@ -13,7 +13,6 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations
         {
             //add all group mutations here
             FieldAsync<TestGroupMutations>("testMutations", resolve: async context => await Task.FromResult(new { }));
-            FieldAsync<TestGroupParallelMutations>("testParallelMutations", resolve: async context => await Task.FromResult(new { }));
 
 
         }
