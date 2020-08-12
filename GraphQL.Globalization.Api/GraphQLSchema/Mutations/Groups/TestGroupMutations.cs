@@ -64,8 +64,6 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations.Groups
                             Infrastructure.Extensions.Validation.Validate(request, _httpContextAccessor.HttpContext);
 
                             return await scope.GetService<ITestService>().DemoMutation(request);
-
-                            //return await GetService<ITestService>().DemoMutation(request);
                         }
 
                     });
