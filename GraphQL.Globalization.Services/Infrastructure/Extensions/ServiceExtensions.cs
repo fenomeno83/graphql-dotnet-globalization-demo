@@ -16,7 +16,17 @@ namespace GraphQL.Globalization.Services.Infrastructure.Extensions
         {
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
-                    configuration.GetConnectionString("DB")));
+                    configuration.GetConnectionString("DefaultConnection")));
+
+        }
+
+        public static void AddFactoryDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+            services.AddSingleton(s => new Func<ApplicationDbContext>(() => new ApplicationDbContext(optionsBuilder.Options)));
+
         }
 
         public static void AddBusinessServices(this IServiceCollection services)
@@ -26,6 +36,7 @@ namespace GraphQL.Globalization.Services.Infrastructure.Extensions
             services.AddSingleton<IEnumsManager, EnumsManager>();
             services.AddSingleton<ILogService, LogService>();
             services.AddScoped<ITestService, TestService>();
+            services.AddScoped<ITestParallelService, TestParallelService>();
             services.AddScoped<IInfrastructureService, InfrastructureService>();
             services.AddScoped<IValidationContextService, ValidationContextService>();
 

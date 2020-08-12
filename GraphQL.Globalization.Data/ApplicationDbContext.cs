@@ -11,5 +11,10 @@ namespace GraphQL.Globalization.Data
         : base(options)
         {
         }
+
+        public static implicit operator ApplicationDbContext(Func<ApplicationDbContext> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
