@@ -21,6 +21,7 @@ Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), thi
 
 9-Scoped lifetime for services called inside queries and mutations, that have singleton lifetime (by default you can't have scoped lifetime inside a component with singleton lifetime). 
 This prevent, for example, that dbcontext connection is open only once at starting server. Instead it is open at each request, because of scoped lifetime.
+We have implemented 2 approaches: 1 where dbcontext is injected at request lifetime, but this can fails in case of graphql parallel execution; 1 where a factory is injected, so you can instantiate dbcontext explicitly (in this case there is an example that shows how pass dbcontext between the various methods that works also alone)
 
 10-GraphiQL GUI. See readme.txt in case you use auth
 
