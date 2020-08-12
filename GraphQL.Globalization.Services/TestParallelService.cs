@@ -60,5 +60,19 @@ namespace GraphQL.Globalization.Services
                 };
             }
         }
+
+        public async Task<TestResponse> DemoOtherQuery(int id)
+        {
+            using (var _db = _dbfunc())
+            {
+                //emulate an async operation
+                await Task.Delay(1);
+
+                return new TestResponse()
+                {
+                    Code = Guid.NewGuid().ToString()
+                };
+            }
+        }
     }
 }

@@ -98,6 +98,7 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations.Groups
                         //validate model
                         Infrastructure.Extensions.Validation.Validate(request, httpContextAccessor.HttpContext);
 
+                        //this method can be called by mutation resolver, where dbcontext is not yet instantiate, or by service method where dbcontext is already instantiate
                         return await GetService<ITestParallelService>().DemoMutationPassedContext<object>(request);
                     });
 
