@@ -49,7 +49,7 @@ namespace GraphQL.Globalization.Api.Controllers
 
             result.Errors?.ToList().ForEach(err =>
             {
-                result.Errors.Add(new ExecutionError(err.ToString()));
+                result.Errors.Add(new ExecutionError(string.IsNullOrWhiteSpace(err.InnerException?.Message) ? err.ToString() : err.InnerException.Message));
                 _logService.WriteLog(LogLevelL4N.ERROR, $"ID: {correlation}\n{err.ToString()}");
             });
 

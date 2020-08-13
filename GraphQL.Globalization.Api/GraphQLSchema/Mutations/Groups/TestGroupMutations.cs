@@ -55,13 +55,13 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Mutations.Groups
                         {
 
                             //example of scopes authorization, if it is configured from startup.cs
-                            //_httpContextAccessor.HttpContext.ValidateScopes("create");
+                            //_httpContextAccessor.ValidateScopes("create");
 
                             //get dto; use GetArgumentExtension instead of native GetArgument, because solve some deserialization problems
                             TestRequest request = context.GetArgumentExtension<TestRequest>("input");
 
                             //validate model
-                            Infrastructure.Extensions.Validation.Validate(request, _httpContextAccessor.HttpContext);
+                            _httpContextAccessor.Validate(request);
 
                             return await scope.GetService<ITestService>().DemoMutation(request);
                         }

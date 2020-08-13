@@ -46,7 +46,7 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Queries.Groups
                         using (var scope = _httpContextAccessor.CreateScope())
                         {
                             //example of scopes authorization, if it is configured from startup.cs
-                            //_httpContextAccessor.HttpContext.ValidateScopes("read");
+                            //_httpContextAccessor.ValidateScopes("read");
 
                             return await scope.GetService<ITestService>().DemoQuery(context.GetArgument<int>("input"));
                         }
