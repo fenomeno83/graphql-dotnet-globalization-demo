@@ -129,6 +129,9 @@
   <data name="greather_than" xml:space="preserve">
     <value>The field {0} must be greather than the field {1}.</value>
   </data>
+  <data name="notvalid_model" xml:space="preserve">
+    <value>Input model is not valid with errors:\n{0}</value>
+  </data>
   <data name="range_field" xml:space="preserve">
     <value>The field {0} must be between {1} and {2}.</value>
   </data>

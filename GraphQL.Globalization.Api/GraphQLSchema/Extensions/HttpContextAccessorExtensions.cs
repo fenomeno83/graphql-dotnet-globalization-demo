@@ -35,7 +35,7 @@ namespace GraphQL.Globalization.Api.GraphQLSchema.Extensions
             var invalidFields = ValidateModel(model, validationContext, localizer);
             if (invalidFields != null && invalidFields.Count > 0)
             {
-                throw new System.Exception(string.Format(ApiMessages.NotValidModel, invalidFields.Aggregate((curr, next) => $"{curr}\n {next}")));
+                throw new System.Exception(string.Format(localizer["notvalid_model"], invalidFields.Aggregate((curr, next) => $"{curr}\n {next}")));
             }
         }
 

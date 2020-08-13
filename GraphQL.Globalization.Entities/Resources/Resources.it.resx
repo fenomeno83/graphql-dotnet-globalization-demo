@@ -129,6 +129,9 @@
   <data name="greather_than" xml:space="preserve">
     <value>Il campo {0} deve essere maggiore del campo {1}.</value>
   </data>
+  <data name="notvalid_model" xml:space="preserve">
+    <value>Il modello di input non è valido con i seguenti errori:\n{0}</value>
+  </data>
   <data name="range_field" xml:space="preserve">
     <value>Il campo {0} deve essere compreso tra {1} e {2}.</value>
   </data>
