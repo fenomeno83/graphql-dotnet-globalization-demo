@@ -28,3 +28,6 @@ Based on graphql-dotnet (https://github.com/graphql-dotnet/graphql-dotnet ), thi
 12-Test project
 
 13-Visual studio 2019 template, if you want generate the solution using your own namespaces
+
+NB: for .net 5, see here
+https://github.com/fenomeno83/graphql-dotnet5-globalization-demo
