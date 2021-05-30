@@ -12,15 +12,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using static GraphQL.Globalization.Entities.Models.Enums;
+using GraphQL.NewtonsoftJson;
+using System.Net;
 
 namespace GraphQL.Globalization.Api.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
-    public class GraphQLController : ControllerBase
+    public class GraphQLController : BaseController
     {
 
-        public GraphQLController(ISchema schema, IDocumentExecuter documentExecuter, ILogService logService, IConfiguration configuration)
-            : base(schema, documentExecuter, logService, configuration)
+        public GraphQLController(ISchema schema, IDocumentExecuter documentExecuter, ILogService logService, IConfiguration configuration, IDocumentWriter documentWriter)
+            : base(schema, documentExecuter, logService, configuration, documentWriter)
         {
         }
 
@@ -53,11 +56,39 @@ namespace GraphQL.Globalization.Api.Controllers
                 _logService.WriteLog(LogLevelL4N.ERROR, $"ID: {correlation}\n{err.ToString()}");
             });
 
-            var groupItem = (result?.Data?.GetValue() as Dictionary<string, object>)?.FirstOrDefault();
-            string groupName = groupItem?.Key ?? string.Empty;
+            List<string> methods = new List<string>();
 
-            var methodItem = (groupItem?.Value as Dictionary<string, object>)?.FirstOrDefault();
-            string methodName = methodItem?.Key ?? string.Empty;
+            bool log = true;
+            var root = (result?.Data) as Execution.RootExecutionNode;
+            var groupItems = root?.SubFields;
+            if (groupItems != null && groupItems.Length > 0)
+            {
+                foreach (var g in groupItems)
+                {
+                    var node = g as Execution.ObjectExecutionNode;
+                    string groupName = node.Name ?? string.Empty;
+
+                    if (groupName == GraphQLConst.Schema)
+                        log = false;
+
+                    var methodItems = node?.SubFields;
+
+                    if (methodItems != null && methodItems.Length > 0)
+                    {
+                        foreach (var m in methodItems)
+                        {
+                            string methodName = m.Name ?? string.Empty;
+
+                            methods.Add($"{groupName}/{methodName}");
+                        }
+                    }
+                }
+            }
+
+
+            methods = methods.OrderBy(x => x).ToList();
+
+            string label = string.Join("-", methods);
 
             bool.TryParse(_configuration["Log4NetConfigFile:LogBodyRequest"], out bool logBodyRequest);
 
@@ -65,27 +96,33 @@ namespace GraphQL.Globalization.Api.Controllers
             {
 
                 if (logBodyRequest)
-                    _logService.WriteLog(LogLevelL4N.ERROR, string.Format(ApiMessages.ApiErrorLogWithBodyRequest, correlation, $"{groupName}/{methodName}", timer.ElapsedMilliseconds.ToString("N0"), HttpContext.GetBodyString() ?? string.Empty));
+                    _logService.WriteLog(LogLevelL4N.ERROR, string.Format(ApiMessages.ApiErrorLogWithBodyRequest, correlation, label, timer.ElapsedMilliseconds.ToString("N0"), HttpContext.GetBodyString() ?? string.Empty));
                 else
-                    _logService.WriteLog(LogLevelL4N.ERROR, string.Format(ApiMessages.ApiErrorLog, correlation, $"{groupName}/{methodName}", timer.ElapsedMilliseconds.ToString("N0")));
+                    _logService.WriteLog(LogLevelL4N.ERROR, string.Format(ApiMessages.ApiErrorLog, correlation, label, timer.ElapsedMilliseconds.ToString("N0")));
 
 
-                return BadRequest(result);
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                Response.ContentType = "application/json";
+                await _documentWriter.WriteAsync(Response.Body, result, HttpContext.RequestAborted);
+                return new EmptyResult();
             }
             else
             {
                 bool.TryParse(_configuration["Log4NetConfigFile:Automatic"], out bool autolog);
 
-                if (autolog)
+                if (autolog && log)
                 {
                     if (logBodyRequest)
-                        _logService.WriteLog(LogLevelL4N.INFO, string.Format(ApiMessages.ApiMethodLogWithBodyRequest, correlation, $"{groupName}/{methodName}", timer.ElapsedMilliseconds.ToString("N0"), HttpContext.GetBodyString() ?? string.Empty));
+                        _logService.WriteLog(LogLevelL4N.INFO, string.Format(ApiMessages.ApiMethodLogWithBodyRequest, correlation, label, timer.ElapsedMilliseconds.ToString("N0"), HttpContext.GetBodyString() ?? string.Empty));
                     else
-                        _logService.WriteLog(LogLevelL4N.INFO, string.Format(ApiMessages.ApiMethodLog, correlation, $"{groupName}/{methodName}", timer.ElapsedMilliseconds.ToString("N0")));
+                        _logService.WriteLog(LogLevelL4N.INFO, string.Format(ApiMessages.ApiMethodLog, correlation, label, timer.ElapsedMilliseconds.ToString("N0")));
 
                 }
 
-                return Ok(result);
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                Response.ContentType = "application/json";
+                await _documentWriter.WriteAsync(Response.Body, result, HttpContext.RequestAborted);
+                return new EmptyResult();
 
             }
 

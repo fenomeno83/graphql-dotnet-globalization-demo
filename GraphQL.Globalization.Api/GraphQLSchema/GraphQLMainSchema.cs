@@ -12,10 +12,10 @@ namespace GraphQL.Globalization.Api.GraphQLSchema
     public class GraphQLMainSchema : Schema
     {
 
-        public GraphQLMainSchema(IDependencyResolver resolver) : base(resolver)
+        public GraphQLMainSchema(IServiceProvider provider) : base(provider)
         {
-            Query = resolver.Resolve<RootQuery>();
-            Mutation = resolver.Resolve<RootMutation>();
+            Query = provider.GetService<RootQuery>();
+            Mutation = provider.GetService<RootMutation>();
         }
 
     }

@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reflection;
 using GraphiQl;
-using GraphQL.Http;
 using GraphQL.Types;
 using GraphQL.Globalization.Api.GraphQLSchema;
 using GraphQL.Globalization.Api.Infrastructure.Middlewares;
@@ -17,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using GraphQL;
 using GraphQL.AutoTypes;
+using GraphQL.SystemTextJson;
 
 namespace GraphQL.Globalization.Api
 {
@@ -33,9 +33,7 @@ namespace GraphQL.Globalization.Api
         public void ConfigureServices(IServiceCollection services)
         {
            
-            services.AddSingleton<IDependencyResolver>(_ => new
-                FuncDependencyResolver(_.GetRequiredService));
-
+         
             //GraphQL Types 
             //Scan the assembly where the GraphQL schema is defined for types,
             //foreach type register a singleton in IoC container

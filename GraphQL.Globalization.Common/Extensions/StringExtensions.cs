@@ -114,6 +114,17 @@ namespace GraphQL.Globalization.Common.Extensions
             }
         }
 
+        public static string CleanPhoneNumber(this string phone)
+        {
+            if (phone == null)
+                return null;
+
+            phone = phone.Replace("+", "00");
+
+            Regex digitsOnly = new Regex(@"[^\d]");
+            return digitsOnly.Replace(phone, string.Empty);
+        }
+
         public static string ReplaceTemplateFromDictionary(this string template, Dictionary<string, string> parameters)
         {
             return Regex.Replace(template, @"\{(.+?)\}", x => parameters[x.Groups[1].Value]);
@@ -158,6 +169,21 @@ namespace GraphQL.Globalization.Common.Extensions
         public static T GetBodyObject<T>(this string body)
         {
             return string.IsNullOrWhiteSpace(body) ? default(T) : JsonConvert.DeserializeObject<T>(body);
+        }
+
+        public static T TryDeserializeObject<T>(this string value)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    return default(T);
+
+                return JsonConvert.DeserializeObject<T>(value);
+            }
+            catch
+            {
+                return default(T);
+            }
         }
     }
 }

@@ -13,5 +13,10 @@ namespace GraphQL.Globalization.Api
         public const string ApiErrorLogWithBodyRequest = "ID: {0}. Error for method {1} with execution time {2} ms";
 
     }
+
+    public static class GraphQLConst
+    {
+        public const string Schema = "__schema";
+    }
     
 }

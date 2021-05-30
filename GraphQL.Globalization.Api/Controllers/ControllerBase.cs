@@ -14,19 +14,22 @@ using System.Threading.Tasks;
 
 namespace GraphQL.Globalization.Api.Controllers
 {
-    public class ControllerBase : Controller
+    public class BaseController : ControllerBase
     {
         protected readonly IDocumentExecuter _documentExecuter;
         protected readonly ISchema _schema;
         protected readonly ILogService _logService;
         protected readonly IConfiguration _configuration;
+        protected readonly IDocumentWriter _documentWriter;
 
-        public ControllerBase(ISchema schema, IDocumentExecuter documentExecuter, ILogService logService, IConfiguration configuration)
+
+        public BaseController(ISchema schema, IDocumentExecuter documentExecuter, ILogService logService, IConfiguration configuration, IDocumentWriter documentWriter)
         {
             _logService = logService;
             _configuration = configuration;
             _schema = schema;
             _documentExecuter = documentExecuter;
+            _documentWriter = documentWriter;
 
         }
 

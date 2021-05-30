@@ -33,7 +33,7 @@ namespace GraphQL.Globalization.Common.Extensions
 
         public static DateTime ConvertDate(this DateTime DT, DateTimeKind DestinationKind, DateTimeKind DefaultUnspecifiedKind = DateTimeKind.Local)
         {
-            if (DestinationKind == DateTimeKind.Unspecified)
+            if (DestinationKind == DateTimeKind.Unspecified || DT == DateTime.MaxValue || DT == DateTime.MinValue)
                 return DT;
 
             if (DT.Kind == DateTimeKind.Unspecified) //set default kind

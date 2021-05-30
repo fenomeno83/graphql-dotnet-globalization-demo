@@ -22,7 +22,7 @@ namespace GraphQL.Globalization.Api.Infrastructure.Extensions
     public static class GraphQLExtensions
     {
 
-        public static T GetArgumentExtension<T>(this ResolveFieldContext<object> context, string name)
+        public static T GetArgumentExtension<T>(this IResolveFieldContext context, string name)
         {
 
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(context.GetArgument<dynamic>(name)));
